@@ -1,0 +1,20 @@
+# TODO: Replace YOUR_SHOPIFY_APP_CLIENT_ID with the Client ID from your Shopify Partner Dashboard app.
+client_id = "917545a2fd0b4515f1e0a885ac2d473a"
+name = "ClickPesa Payments"
+handle = "clickpesa-payments"
+# TODO: Replace with your actual public HTTPS URL (e.g. https://your-ngrok-id.ngrok.io or your deployed domain).
+application_url = "https://clickpesa-shopify.loca.lt"
+embedded = false
+
+[access_scopes]
+scopes = "write_payment_gateways,write_payment_sessions"
+
+[auth]
+# TODO: Replace both redirect URLs with your real domain. /auth/callback is the primary OAuth redirect.
+redirect_urls = [
+  "https://clickpesa-shopify.loca.lt/auth/callback",
+  "https://clickpesa-shopify.loca.lt/auth/shopify/callback"
+]
+
+[webhooks]
+api_version = "2026-01"

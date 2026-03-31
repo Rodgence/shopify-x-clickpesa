@@ -1,0 +1,12 @@
+node_modules
+.cache
+.turbo
+.parcel-cache
+build
+.vercel
+.env
+.DS_Store
+coverage
+dist
+prisma/dev.db
+prisma/dev.db-journal
