@@ -5,6 +5,7 @@ node_modules
 build
 .vercel
 .env
+.env.production
 .DS_Store
 coverage
 dist
