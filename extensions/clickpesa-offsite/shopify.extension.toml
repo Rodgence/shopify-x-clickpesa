@@ -1,10 +1,10 @@
 name = "clickpesa-offsite"
 type = "payments_extension"
 # TODO: Replace all four URLs below with your real public HTTPS domain before deploying the extension.
-payment_session_url = "https://clickpesa-shopify.loca.lt/app/payment-session"
-refund_session_url = "https://clickpesa-shopify.loca.lt/app/refund-session"
-capture_session_url = "https://clickpesa-shopify.loca.lt/app/capture-session"
-void_session_url = "https://clickpesa-shopify.loca.lt/app/void-session"
+payment_session_url = "https://payments.riseshinebeauty.online/app/payment-session"
+refund_session_url = "https://payments.riseshinebeauty.online/app/refund-session"
+capture_session_url = "https://payments.riseshinebeauty.online/app/capture-session"
+void_session_url = "https://payments.riseshinebeauty.online/app/void-session"
 supported_countries = ["TZ"]
 supports_3ds = false
 supported_payment_methods = ["visa", "master", "american_express"]
