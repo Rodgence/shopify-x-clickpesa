@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
 async function start() {
   const { createRequestHandler } = await import("@remix-run/node");
   const { createServer } = await import("node:http");
-  const build = await import("./build/server/index.js");
+  const build = await import("./build/server/index.mjs");
 
   const handler = createRequestHandler(build, process.env.NODE_ENV);
 

@@ -1,7 +1,6 @@
 {
   "name": "clickpesa-shopify-payments-app",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "remix vite:dev",
     "build": "remix vite:build",
