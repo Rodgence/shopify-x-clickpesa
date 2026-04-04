@@ -4,7 +4,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -53,7 +53,7 @@ enum AuditLevel {
 model Shop {
   id              String           @id @default(cuid())
   shopDomain      String           @unique
-  accessToken     String?
+  accessToken     String?          @db.Text
   installedAt     DateTime?
   createdAt       DateTime         @default(now())
   updatedAt       DateTime         @updatedAt
@@ -69,9 +69,9 @@ model MerchantConfig {
   environment       ClickPesaEnvironment @default(SANDBOX)
   isProviderReady   Boolean              @default(false)
   checksumEnabled   Boolean              @default(false)
-  callbackBaseUrl   String?
-  returnUrlOverride String?
-  cancelUrlOverride String?
+  callbackBaseUrl   String?  @db.Text
+  returnUrlOverride String?  @db.Text
+  cancelUrlOverride String?  @db.Text
   supportEmail      String?
   createdAt         DateTime             @default(now())
   updatedAt         DateTime             @updatedAt
@@ -82,9 +82,9 @@ model MerchantConfig {
 model ClickPesaCredential {
   id                   String         @id @default(cuid())
   merchantConfigId     String         @unique
-  encryptedClientId    String
-  encryptedApiKey      String
-  encryptedChecksumKey String?
+  encryptedClientId    String  @db.Text
+  encryptedApiKey      String  @db.Text
+  encryptedChecksumKey String?  @db.Text
   createdAt            DateTime       @default(now())
   updatedAt            DateTime       @updatedAt
   merchantConfig       MerchantConfig @relation(fields: [merchantConfigId], references: [id], onDelete: Cascade)
@@ -108,18 +108,18 @@ model PaymentSession {
   customerPhone             String?
   billingAddress            Json?
   shippingAddress           Json?
-  cancelUrl                 String?
-  redirectUrl               String?
+  cancelUrl                 String?               @db.Text
+  redirectUrl               String?               @db.Text
   clickpesaOrderReference   String?               @unique
   clickpesaPaymentReference String?               @unique
-  clickpesaCheckoutLink     String?
+  clickpesaCheckoutLink     String?               @db.Text
   clickpesaStatus           String?
-  nextActionRedirectUrl     String?
+  nextActionRedirectUrl     String?               @db.Text
   resolvedAt                DateTime?
   rejectedAt                DateTime?
   pendingAt                 DateTime?
   lastReconciledAt          DateTime?
-  lastError                 String?
+  lastError                 String?               @db.Text
   metadata                  Json?
   createdAt                 DateTime              @default(now())
   updatedAt                 DateTime              @updatedAt
@@ -165,10 +165,10 @@ model WebhookEvent {
   idempotencyKey   String          @unique
   eventType        String
   verified         Boolean         @default(false)
-  rawBody          String
+  rawBody          String          @db.Text
   payload          Json?
   processedAt      DateTime?
-  errorMessage     String?
+  errorMessage     String?         @db.Text
   createdAt        DateTime        @default(now())
   shop             Shop?           @relation(fields: [shopId], references: [id], onDelete: SetNull)
   paymentSession   PaymentSession? @relation(fields: [paymentSessionId], references: [id], onDelete: SetNull)
@@ -221,7 +221,7 @@ model AuditLog {
   level            AuditLevel      @default(INFO)
   action           String
   actor            String
-  message          String
+  message          String   @db.Text
   context          Json?
   createdAt        DateTime        @default(now())
   shop             Shop?           @relation(fields: [shopId], references: [id], onDelete: SetNull)
