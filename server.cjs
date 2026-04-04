@@ -4,6 +4,11 @@
 const path = require("path");
 const port = process.env.PORT || 3000;
 
+// Add cPanel virtual environment node_modules to module resolution path
+const venvLib = `/home/rodwayco/nodevenv/payments/20/lib/node_modules`;
+process.env.NODE_PATH = venvLib;
+require("module").Module._initPaths();
+
 async function start() {
   const { createRequestHandler } = await import("@remix-run/node");
   const { createServer } = await import("node:http");
