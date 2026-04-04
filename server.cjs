@@ -9,7 +9,7 @@ async function start() {
   const venv = `/home/rodwayco/nodevenv/payments/20/lib/node_modules`;
   const { createRequestHandler } = await import(`${venv}/@remix-run/node/dist/index.js`);
   const { createServer } = await import("node:http");
-  const build = await import("./build/server/index.mjs");
+  const build = await import("./build/server/index.js");
 
   const handler = createRequestHandler(build, process.env.NODE_ENV);
 
